@@ -83,7 +83,7 @@ export function useAuthState() {
       const userData = await api.get<User>('/auth/me');
       setUser(userData);
     } catch (error) {
-      console.error('Erreur de vérification auth:', error);
+      console.warn('Vérification auth échouée (normal si non connecté):', error);
       
       // Nettoyer les tokens invalides
       if (typeof window !== 'undefined') {
@@ -94,19 +94,14 @@ export function useAuthState() {
       
       setUser(null);
       
-      // Ne pas traiter les erreurs d'authentification comme des erreurs fatales
-      // Ces erreurs sont normales quand l'utilisateur n'est pas connecté
-      const isAuthError = error instanceof Error && (
-        error.message.includes('401') || 
-        error.message.includes('403') || 
-        error.message.includes('Session') ||
-        error.message.includes('Token') ||
-        error.message.includes('Compte désactivé') ||
-        error.message.includes('invalide') ||
-        error.message.includes('expirée')
-      );
-      
-      if (!isAuthError && error instanceof Error) {
+      // Seulement définir l'erreur pour les vraies erreurs système
+      if (error instanceof Error && 
+          !error.message.includes('401') && 
+          !error.message.includes('403') && 
+          !error.message.includes('Session') &&
+          !error.message.includes('Token') &&
+          !error.message.includes('invalide') &&
+          !error.message.includes('expirée')) {
         setError(error.message);
       }
     } finally {

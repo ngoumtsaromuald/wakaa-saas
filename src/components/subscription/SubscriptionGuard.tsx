@@ -60,8 +60,13 @@ export const SubscriptionGuard: React.FC<SubscriptionGuardProps> = ({
     );
   }
 
-  // Pas d'abonnement
+  // Pas d'abonnement - ne pas bloquer l'accès, juste informer
   if (!data?.subscription) {
+    // Si pas de fallback spécifique, laisser passer le contenu avec un avertissement discret
+    if (!fallback && !showUpgradePrompt) {
+      return <>{children}</>;
+    }
+    
     if (fallback) return <>{fallback}</>;
     
     return (

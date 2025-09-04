@@ -4,6 +4,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useAuthState, AuthContext } from '@/hooks/useAuth';
 import { ClientOnly } from '@/components/ClientOnly';
+import { AuthMessages } from '@/components/auth/AuthMessages';
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   return (
     <ClientOnly fallback={<div>Chargement...</div>}>
       <AuthContext.Provider value={authState}>
+        <AuthMessages />
         {children}
       </AuthContext.Provider>
     </ClientOnly>

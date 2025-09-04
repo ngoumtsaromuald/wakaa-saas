@@ -6,6 +6,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Subscription } from '@/lib/subscription-validation';
+import { apiCache } from '@/lib/api-cache';
 
 interface SubscriptionData {
   subscription: Subscription | null;
@@ -35,7 +36,17 @@ export const useSubscription = (): UseSubscriptionReturn => {
   const [error, setError] = useState<string | null>(null);
 
   // Récupérer les données d'abonnement
-  const fetchSubscription = useCallback(async () => {
+  const fetchSubscription = useCallback(async (forceRefresh = false) => {
+    const cacheKey = 'subscription-data';
+    
+    // Vérifier le cache d'abord (sauf si refresh forcé)
+    if (!forceRefresh && apiCache.has(cacheKey)) {
+      const cachedData = apiCache.get(cacheKey);
+      setData(cachedData);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       setIsLoading(true);
       setError(null);
@@ -50,14 +61,30 @@ export const useSubscription = (): UseSubscriptionReturn => {
 
       if (!response.ok) {
         const errorData = await response.json();
+        
+        // Ne pas traiter les erreurs d'authentification comme des erreurs fatales
+        if (response.status === 401 || response.status === 403) {
+          console.warn('Utilisateur non authentifié pour l\'abonnement');
+          setData(null);
+          apiCache.delete(cacheKey);
+          return;
+        }
+        
         throw new Error(errorData.error?.message || 'Erreur lors du chargement de l\'abonnement');
       }
 
       const result = await response.json();
       setData(result.data);
+      
+      // Mettre en cache pour 2 minutes
+      apiCache.set(cacheKey, result.data, 2 * 60 * 1000);
     } catch (err: any) {
       console.error('Erreur lors du chargement de l\'abonnement:', err);
-      setError(err.message);
+      
+      // Ne pas afficher d'erreur pour les problèmes d'authentification
+      if (!err.message?.includes('401') && !err.message?.includes('403')) {
+        setError(err.message);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -150,7 +177,7 @@ export const useSubscription = (): UseSubscriptionReturn => {
     data,
     isLoading,
     error,
-    refetch: fetchSubscription,
+    refetch: () => fetchSubscription(true),
     createSubscription,
     cancelSubscription,
     checkFeature,
