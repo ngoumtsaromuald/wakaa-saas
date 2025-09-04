@@ -1,262 +1,232 @@
+# 🚀 Wakaa SaaS Platform
 
-# 🚀 Wakaa - Plateforme SaaS pour Micro-Entrepreneurs
+Une plateforme SaaS complète pour la gestion d'e-commerce avec authentification, gestion des abonnements et tableau de bord analytique.
 
-**Transformez la gestion chaotique des commandes WhatsApp en un système structuré et automatisé**
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/wakaa/wakaa)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/wakaa/wakaa/actions)
+## ✨ Fonctionnalités
 
-## 🎯 À Propos
+- 🔐 **Authentification complète** : Inscription, connexion, gestion des rôles (Admin, Merchant, User)
+- 💳 **Gestion des abonnements** : Plans tarifaires flexibles avec limites d'utilisation
+- 📊 **Tableau de bord analytique** : Statistiques en temps réel avec graphiques interactifs
+- 🛒 **Gestion e-commerce** : Produits, commandes, clients, paiements
+- 💬 **Intégration WhatsApp** : Gestion des messages et templates automatisés
+- 🎨 **Interface moderne** : Design responsive avec Tailwind CSS et shadcn/ui
+- 🔒 **Sécurité avancée** : Middleware de protection, validation des données
+- 📱 **Responsive Design** : Compatible mobile, tablette et desktop
 
-Wakaa est une plateforme SaaS spécialement conçue pour les micro-entrepreneurs camerounais qui gèrent leurs commandes via WhatsApp. Notre solution transforme le chaos des messages WhatsApp en un système de gestion structuré avec paiements mobiles intégrés.
+## 🛠️ Technologies
 
-### 🌟 Problème Résolu
+### Frontend
+- **Next.js 15** - Framework React avec App Router
+- **React 19** - Bibliothèque UI avec les dernières fonctionnalités
+- **TypeScript** - Typage statique pour une meilleure robustesse
+- **Tailwind CSS** - Framework CSS utilitaire
+- **shadcn/ui** - Composants UI modernes et accessibles
+- **Lucide React** - Icônes SVG optimisées
+- **Recharts** - Graphiques et visualisations de données
 
-Les micro-entrepreneurs au Cameroun font face à :
-- 📱 Gestion manuelle et chaotique des commandes WhatsApp
-- 💸 Difficultés de suivi des paiements mobiles
-- 📊 Absence de données pour optimiser leur business
-- ⏰ Perte de temps sur des tâches répétitives
+### Backend
+- **Next.js API Routes** - API RESTful intégrée
+- **PostgREST** - API REST automatique pour PostgreSQL
+- **PostgreSQL** - Base de données relationnelle robuste
+- **JWT** - Authentification par tokens sécurisés
 
-### ✨ Notre Solution
+### Outils de développement
+- **ESLint** - Linting du code
+- **Prettier** - Formatage automatique
+- **TypeScript** - Vérification de types
+- **Git** - Contrôle de version
 
-Wakaa automatise et structure :
-- 🤖 **Réception automatique** des commandes WhatsApp
-- 💳 **Paiements mobiles** intégrés (MTN MoMo, Orange Money)
-- 📈 **Analytics en temps réel** pour optimiser les ventes
-- 👥 **CRM intégré** pour fidéliser les clients
-
-## 🚀 Démarrage Rapide
+## 🚀 Installation et démarrage
 
 ### Prérequis
+- Node.js 18+ 
+- PostgreSQL 13+
+- npm ou yarn
 
-- Node.js 18+ et pnpm
-- Base de données PostgreSQL (Supabase recommandé)
-- Compte WhatsApp Business API
-- Compte CinetPay pour les paiements
-
-### Installation
-
-1. **Cloner le repository**
+### 1. Cloner le repository
 ```bash
-git clone https://github.com/wakaa/wakaa.git
-cd wakaa
+git clone https://github.com/ngoumtsaromuald/wakaa-saas.git
+cd wakaa-saas
 ```
 
-2. **Installer les dépendances**
+### 2. Installer les dépendances
 ```bash
-pnpm install
+npm install --legacy-peer-deps
 ```
 
-3. **Configurer l'environnement**
+### 3. Configuration de l'environnement
 ```bash
 cp .env.example .env.local
-# Remplir les variables d'environnement
 ```
 
-4. **Migrer la base de données**
-```bash
-# Exécuter le fichier database/migration.sql sur votre instance PostgreSQL
-psql -d your_database -f database/migration.sql
-```
-
-5. **Lancer l'application**
-```bash
-pnpm dev
-```
-
-L'application sera disponible sur [http://localhost:3000](http://localhost:3000)
-
-## 📊 État du Projet
-
-Consultez le [**RAPPORT DE PROJET DÉTAILLÉ**](PROJECT_REPORT.md) pour :
-- ✅ Fonctionnalités complètement implémentées
-- 🟡 Fonctionnalités partielles
-- 🔴 Fonctionnalités restantes
-- 📈 Progression détaillée par module
-
-### Résumé Rapide
-- **Architecture** : 95% ✅
-- **Base de Données** : 100% ✅
-- **Authentification** : 90% ✅
-- **Interface** : 85% ✅
-- **API Backend** : 80% 🟡
-- **Intégrations** : 60% 🟡
-
-## 🏗️ Architecture Technique
-
-### Stack Technologique
-
-- **Frontend** : Next.js 15, React 19, TypeScript
-- **UI/UX** : Tailwind CSS, Shadcn/UI, Framer Motion
-- **Base de Données** : PostgreSQL avec Supabase
-- **Authentification** : JWT avec Row Level Security
-- **Paiements** : CinetPay API
-- **Messaging** : WhatsApp Business API
-
-### Structure du Projet
-
-```
-src/
-├── app/                    # Pages et API routes Next.js
-│   ├── auth/              # Pages d'authentification
-│   ├── dashboard/         # Interface dashboard
-│   └── next_api/          # API routes backend
-├── components/            # Composants React
-│   ├── ui/               # Composants UI Shadcn
-│   ├── auth/             # Composants d'authentification
-│   ├── dashboard/        # Composants dashboard
-│   └── landing/          # Page d'accueil
-├── hooks/                # Hooks React personnalisés
-├── lib/                  # Utilitaires et configuration
-└── database/             # Migration et documentation DB
-```
-
-## 🔧 Configuration
-
-### Variables d'Environnement
-
-Copiez `.env.example` vers `.env.local` et configurez :
-
+Configurez les variables dans `.env.local` :
 ```env
 # Base de données
-POSTGREST_URL=https://your-project.supabase.co/rest/v1
-POSTGREST_API_KEY=your-supabase-anon-key
+DATABASE_URL="postgresql://username:password@localhost:5432/wakaa"
+POSTGREST_URL="http://localhost:3001"
+POSTGREST_API_KEY="your-api-key"
 
-# WhatsApp Business API
-WHATSAPP_ACCESS_TOKEN=your-whatsapp-token
-WHATSAPP_PHONE_NUMBER_ID=your-phone-id
+# JWT
+JWT_SECRET="your-super-secret-jwt-key"
 
-# CinetPay
-CINETPAY_API_KEY=your-cinetpay-key
-CINETPAY_SITE_ID=your-site-id
+# Application
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-### Base de Données
+### 4. Configuration de la base de données
 
-1. **Créer un projet Supabase** ou configurer PostgreSQL
-2. **Exécuter la migration** : `database/migration.sql`
-3. **Vérifier les données** : Tables et données de test créées
-4. **Configurer RLS** : Politiques de sécurité activées
+#### Option A : Utilisation des scripts automatisés
+```bash
+# Windows PowerShell
+.\scripts\setup-database.ps1
+.\scripts\setup-postgrest.ps1
+```
 
-## 📱 Fonctionnalités Principales
+#### Option B : Configuration manuelle
+1. Créez la base de données PostgreSQL
+2. Exécutez les migrations depuis `database/migration.sql`
+3. Configurez PostgREST avec `postgrest/wakaa.conf`
 
-### 🤖 Automatisation WhatsApp
-- Réception automatique des commandes
-- Parser intelligent des messages
-- Réponses automatiques configurables
-- Templates de messages prédéfinis
+### 5. Lancer l'application
+```bash
+# Développement
+npm run dev
 
-### 💳 Paiements Mobiles
-- Intégration CinetPay complète
-- Support MTN MoMo et Orange Money
-- Liens de paiement sécurisés
-- Webhooks de confirmation
+# Production
+npm run build
+npm start
+```
 
-### 📊 Analytics et Rapports
-- Dashboard en temps réel
-- KPI business essentiels
-- Graphiques interactifs
+L'application sera accessible sur `http://localhost:3000`
+
+## 📁 Structure du projet
+
+```
+wakaa-saas/
+├── src/
+│   ├── app/                    # Pages Next.js App Router
+│   │   ├── auth/              # Pages d'authentification
+│   │   ├── dashboard/         # Tableau de bord
+│   │   ├── next_api/          # API Routes
+│   │   └── globals.css        # Styles globaux
+│   ├── components/            # Composants React
+│   │   ├── auth/              # Composants d'authentification
+│   │   ├── dashboard/         # Composants du tableau de bord
+│   │   ├── ui/                # Composants UI (shadcn/ui)
+│   │   └── landing/           # Page d'accueil
+│   ├── hooks/                 # Hooks personnalisés
+│   ├── lib/                   # Utilitaires et services
+│   └── middleware.ts          # Middleware Next.js
+├── database/                  # Scripts SQL
+├── scripts/                   # Scripts d'automatisation
+├── postgrest/                 # Configuration PostgREST
+└── public/                    # Assets statiques
+```
+
+## 🔐 Authentification et autorisation
+
+### Rôles utilisateur
+- **Admin** : Accès complet à toutes les fonctionnalités
+- **Merchant** : Gestion de son commerce et données
+- **User** : Accès limité aux fonctionnalités de base
+
+### Système d'abonnements
+- **Free** : Fonctionnalités de base limitées
+- **Pro** : Fonctionnalités avancées
+- **Enterprise** : Accès complet sans limites
+
+## 🧪 Tests et développement
+
+### Lancer les tests
+```bash
+npm test
+```
+
+### Linting et formatage
+```bash
+npm run lint
+npm run lint:fix
+```
+
+### Build de production
+```bash
+npm run build
+```
+
+## 📊 Fonctionnalités principales
+
+### Dashboard Analytics
+- Statistiques de ventes en temps réel
+- Graphiques interactifs (revenus, commandes, clients)
+- Métriques de performance
 - Rapports exportables
 
-### 👥 Gestion Clients (CRM)
-- Base de données clients complète
-- Historique des commandes
-- Segmentation automatique
-- Communication multi-canal
+### Gestion E-commerce
+- Catalogue produits avec images
+- Gestion des stocks
+- Traitement des commandes
+- Suivi des paiements
+- Gestion clientèle
 
-## 🧪 Tests
-
-### Tests Disponibles
-```bash
-# Tests unitaires
-pnpm test
-
-# Tests d'intégration
-pnpm test:integration
-
-# Tests end-to-end
-pnpm test:e2e
-```
-
-### Couverture Actuelle
-- **Tests unitaires** : 30% 🔴
-- **Tests d'intégration** : 20% 🔴
-- **Tests E2E** : 10% 🔴
-
-*Note : Les tests sont en cours d'implémentation*
-
-## 🚀 Déploiement
-
-### Déploiement Vercel (Recommandé)
-
-1. **Connecter le repository** à Vercel
-2. **Configurer les variables** d'environnement
-3. **Déployer** automatiquement
-
-### Déploiement Manuel
-
-```bash
-# Build de production
-pnpm build
-
-# Démarrer en production
-pnpm start
-```
-
-## 📚 Documentation
-
-- [**Rapport de Projet**](PROJECT_REPORT.md) - État d'avancement détaillé
-- [**Documentation DB**](database/README.md) - Architecture base de données
-- [**Guide API**](docs/API.md) - Documentation des endpoints
-- [**Guide Utilisateur**](docs/USER_GUIDE.md) - Manuel d'utilisation
+### Intégration WhatsApp
+- Envoi de messages automatisés
+- Templates personnalisables
+- Historique des conversations
+- Notifications en temps réel
 
 ## 🤝 Contribution
 
-### Comment Contribuer
+Les contributions sont les bienvenues ! Voici comment contribuer :
 
-1. **Fork** le repository
-2. **Créer une branche** feature (`git checkout -b feature/nouvelle-fonctionnalite`)
-3. **Commiter** les changements (`git commit -m 'Ajouter nouvelle fonctionnalité'`)
-4. **Push** vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
-5. **Ouvrir une Pull Request**
+1. Fork le projet
+2. Créez une branche feature (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
 
-### Standards de Code
+### Guidelines de contribution
+- Suivez les conventions de code existantes
+- Ajoutez des tests pour les nouvelles fonctionnalités
+- Mettez à jour la documentation si nécessaire
+- Vérifiez que tous les tests passent
 
-- **TypeScript** strict activé
-- **ESLint** et **Prettier** configurés
-- **Commits conventionnels** requis
-- **Tests** obligatoires pour nouvelles fonctionnalités
+## 📝 Changelog
 
-## 🐛 Signaler un Bug
+### Version 1.0.0 (2025-09-04)
+- ✨ Version initiale avec authentification complète
+- ✨ Système de gestion des abonnements
+- ✨ Tableau de bord analytique
+- ✨ Gestion e-commerce de base
+- ✨ Intégration WhatsApp
+- ✨ Interface responsive moderne
 
-Utilisez les [**GitHub Issues**](https://github.com/wakaa/wakaa/issues) avec :
+## 🐛 Signaler des bugs
+
+Si vous trouvez un bug, veuillez ouvrir une [issue](https://github.com/ngoumtsaromuald/wakaa-saas/issues) avec :
 - Description détaillée du problème
 - Étapes pour reproduire
-- Environnement (OS, navigateur, version)
+- Environnement (OS, navigateur, version Node.js)
 - Screenshots si applicable
 
 ## 📄 Licence
 
 Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
+## 👥 Équipe
+
+- **Développeur Principal** : [@ngoumtsaromuald](https://github.com/ngoumtsaromuald)
+
 ## 🙏 Remerciements
 
-- **Shadcn/UI** pour les composants UI
-- **Supabase** pour la base de données
-- **CinetPay** pour les paiements mobiles
-- **WhatsApp Business** pour l'API messaging
-
-## 📞 Contact
-
-- **Email** : contact@wakaa.io
-- **WhatsApp** : +237 6XX XXX XXX
-- **Site Web** : https://wakaa.io
-- **Support** : support@wakaa.io
+- [Next.js](https://nextjs.org/) pour le framework
+- [shadcn/ui](https://ui.shadcn.com/) pour les composants UI
+- [Tailwind CSS](https://tailwindcss.com/) pour le styling
+- [PostgREST](https://postgrest.org/) pour l'API automatique
 
 ---
 
-**Fait avec ❤️ pour les micro-entrepreneurs camerounais**
-
-*Wakaa - Transformez votre business WhatsApp en entreprise structurée*
+⭐ N'hésitez pas à donner une étoile si ce projet vous a aidé !
